@@ -10,6 +10,13 @@
 - 撤销/重做功能
 - 标准参考图对比
 
+
+
+## 软件界面预览图
+
+![Software Preview](assets\function.jpg)
+
+
 ## 安装依赖
 
 ```bash
