@@ -5,7 +5,7 @@
 这是一个基于PyQt5开发的人脸68个关键点标注工具，支持：
 - 图片浏览和标注
 - 关键点的添加、删除、移动
-- 标注结果自动保存为JSON格式
+- 标注结果自动保存为txt格式，可切换为json格式
 - 图片缩放和拖动
 - 撤销/重做功能
 - 标准参考图对比
@@ -14,7 +14,7 @@
 
 ## 软件界面预览图
 
-![Software Preview](assets\function.jpg)
+![Software Preview](assets/function.jpg)
 
 
 ## 安装依赖
@@ -34,7 +34,7 @@ python keypoint_annotation_tool.py
 项目提供了demo图片供快速体验：
 
 ```bash
-# 1. 转换demo标注（首次使用）
+# 1. 转换demo标注（把txt转成json格式）
 python convert_txt_to_json.py demo_jpg
 
 # 2. 启动工具
@@ -148,7 +148,8 @@ python keypoint_annotation_tool.py
   "keypoints": [
     {"id": 1, "x": 0.3088, "y": 0.6803},
     {"id": 2, "x": 0.3253, "y": 0.6648},
-    ...
+    {"id": 3, "x": 0.3422, "y": 0.6493},
+    
   ]
 }
 ```
@@ -162,9 +163,9 @@ python keypoint_annotation_tool.py
 ```
 your_image_folder/
 ├── image1.jpg
-├── image1.json
+├── image1.txt/json
 ├── image2.png
-├── image2.json
+├── image2.txt/json
 └── ...
 ```
 
@@ -235,19 +236,18 @@ x1 y1 x2 y2 x3 y3 ... x68 y68
 - 坐标为比例系数（0.0 到 1.0）
 - 空格分隔
 
-### 像素坐标转比例坐标
-
-如果你有旧版本的像素坐标标注，使用转换工具：
-
-```bash
-python convert_coordinates.py <目录路径>
+**JSON文件格式**：
+```json
+{
+  "image_name": "example.jpg",
+  "keypoints": [
+    {"id": 1, "x": 0.3088, "y": 0.6803},
+    {"id": 2, "x": 0.3253, "y": 0.6648},
+    {"id": 3, "x": 0.3422, "y": 0.6493},
+    
+  ]
+}
 ```
-
-**功能**：
-- 自动读取图片尺寸
-- 将像素坐标转换为比例坐标
-- 自动创建备份文件
-- 检测并跳过已转换的文件
 
 ## 常见问题
 
@@ -281,7 +281,7 @@ A: 可以，在列表中拖动关键点到目标位置，确认后会交换两�
 
 ## 更新日志
 
-### v1.0.0 (2025-10-30)
+### v1.0.0 (2025-11-27)
 - 初始版本发布
 - 支持68个关键点标注
 - 图片缩放、拖动、导航
